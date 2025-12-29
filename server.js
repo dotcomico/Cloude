@@ -1,16 +1,18 @@
 const express = require('express');
-const cors = require('cors'); // חובה לייבא את cors
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors()); // חובה להשתמש בזה כדי שה-Frontend יוכל לגשת לשרת
-app.use(express.json());
+app.use(cors());
 
-// וודא שהנתיב הוא בדיוק /api/data
+app.get('/', (req, res) => {
+    res.send("Server is UP!");
+});
+
 app.get('/api/data', (req, res) => {
     res.json({ message: "Welcome to Cloude! ☁️" });
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running`);
+    console.log(`Running on port ${PORT}`);
 });
